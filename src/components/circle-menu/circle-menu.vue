@@ -1,6 +1,6 @@
 <template>
   <ul class="menu-list">
-    <li class="menu-item" v-for="(item, index) of icons" :key="index">
+    <li class="menu-item" v-for="(item, index) of menu" :key="index">
       <div class="icon-circle">
         <i :class="item.icon"></i>
       </div>
@@ -12,26 +12,12 @@
 <script>
 export default {
   name: 'CircleMenu',
-  data() {
-    return {
-      icons: [
-        {
-          name: '每日推荐',
-          icon: 'fa fa-calendar'
-        }, {
-          name: '歌单',
-          icon: 'fa fa-newspaper-o'
-        }, {
-          name: '排行榜',
-          icon: 'fa fa-signal'
-        }, {
-          name: '电台',
-          icon: 'fa fa-podcast'
-        }, {
-          name: '直播',
-          icon: 'fa fa-video-camera'
-        }
-      ]
+  props: {
+    menu: {
+      type: Array,
+      default() {
+        return []
+      }
     }
   }
 }

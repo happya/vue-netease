@@ -1,6 +1,14 @@
 bg-image($url)
   background-image: url($url + ".png")
 
+no-wrap-line(line)
+  text-overflow: ellipsis
+  overflow: hidden
+  // white-space: nowrap
+  display: -webkit-box;
+  -webkit-line-clamp: line;  // 控制多行的行数
+  -webkit-box-orient: vertical;
+
 no-wrap()
   text-overflow: ellipsis
   overflow: hidden

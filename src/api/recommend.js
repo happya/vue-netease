@@ -11,3 +11,13 @@ export function getBanners() {
     })
   })
 }
+
+export function getAPIData(url) {
+  return new Promise((resolve, reject) => {
+    Http.get(url).then((res) => {
+      resolve(res.data)
+    }, (err) => {
+      reject(err)
+    })
+  })
+}
