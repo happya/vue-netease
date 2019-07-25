@@ -7,17 +7,19 @@
       <scroll :data="data" class="scroll-list">
         <div>
           <div class="banner-wrapper">
-          <banner :banners="banners"></banner>
+            <banner :banners="banners"></banner>
           </div>
           <circle-menu :menu="icons"></circle-menu>
-          <disc :data="discs"></disc>
+          <disc :data="discs" @select="selectItem"></disc>
         </div>
       </scroll>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import { getBanners, getAPIData } from 'api/recommend'
 import API from 'api/index'
 import Banner from 'components/banner/banner'
@@ -53,7 +55,10 @@ export default {
   },
   computed: {
     data() {
-      return this.banners.concat(this.icons.concat(this.discs))
+      // return this.banners.concat(this.icons.concat(this.discs))
+      const data = []
+      data.push(...this.banners, ...this.icons, ...this.discs)
+      return data
     }
   },
   created () {
@@ -61,6 +66,12 @@ export default {
     this._getRecommendList()
   },
   methods: {
+    selectItem(item) {
+      this.$router.push({
+        path: `/find/${item.id}`
+      })
+      this.setDisc(item)
+    },
     _getBanners() {
       getBanners().then((res) => {
         this.banners = res.banners
@@ -71,7 +82,10 @@ export default {
       getAPIData(url).then((res) => {
         this.discs = res.result.slice(0, 6)
       })
-    }
+    },
+    ...mapMutations({
+      setDisc: 'SET_DISC'
+    })
   },
   components: {
     Banner,

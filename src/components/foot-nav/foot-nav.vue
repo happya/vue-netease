@@ -1,20 +1,11 @@
 <template>
   <div class="foot-nav">
-    <ul class="nav-wrapper">
-      <router-link tag="li"
-                   class="nav-item"
-                   v-for="(item,index) of navItem"
-                   :key="index"
-                   :to="item.link"
-      >
-        <i class="icon" :class="item.iconName"></i>
-        <span class="text">{{item.name}}</span>
-      </router-link>
-    </ul>
+    <menu-row :menuItems="navItem"></menu-row>
   </div>
 </template>
 
 <script>
+import MenuRow from 'components/base/menu-row'
 export default {
   data() {
     return {
@@ -42,6 +33,9 @@ export default {
         }
       ]
     }
+  },
+  components: {
+    MenuRow
   }
 }
 </script>
@@ -54,29 +48,5 @@ export default {
     bottom: 0
     right: 0
     height: 50px
-    .nav-wrapper
-      display: flex
-      width: 100%
-      height: 100%
-      background: $color-background
-      .nav-item
-        display: flex
-        flex: 1
-        flex-direction: column
-        align-items: center
-        justify-content: center
-        font-size: $font-size-normal
-        &.router-link-active
-          .icon, .text
-            color: $color-theme
-        .icon
-          line-height: 20px
-          font-size: 20px
-          padding: 5px 0
-          color: $color-text-l
-          font-weight: 1px
-        .text
-          font-size: $font-size-small
-          line-height: 12px
-          color: $color-text-l
+    // background: $color-background
 </style>

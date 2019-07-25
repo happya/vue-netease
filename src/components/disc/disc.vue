@@ -5,7 +5,12 @@
       <div class="link">歌单广场</div>
     </div>
     <ul class="disc-list">
-      <li class="disc-item" v-for="item of data" :key="item.id">
+      <li
+        @click="selectItem(item)"
+        class="disc-item"
+        v-for="item of data"
+        :key="item.id"
+      >
         <div class="cover">
           <img :src="item.picUrl">
         </div>
@@ -24,6 +29,11 @@ export default {
       default() {
         return []
       }
+    }
+  },
+  methods: {
+    selectItem(item) {
+      this.$emit('select', item)
     }
   }
 }

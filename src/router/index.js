@@ -5,6 +5,9 @@ import Video from 'views/video/index'
 import User from 'views/user/index'
 import Friends from 'views/friends/index'
 import Account from 'views/account/index'
+import Playlist from 'views/find/playlist/playlist'
+// import DiscDetail from 'components/disc-detail/disc-detail'
+import ListDetail from 'views/find/playlist/list-detail'
 
 Vue.use(Router)
 
@@ -15,7 +18,13 @@ export default new Router({
       redirect: '/find'
     }, {
       path: '/find',
-      component: Find
+      component: Find,
+      children: [
+        {
+          path: ':id',
+          component: ListDetail
+        }
+      ]
     }, {
       path: '/video',
       component: Video
@@ -28,6 +37,15 @@ export default new Router({
     }, {
       path: '/account',
       component: Account
+    }, {
+      path: '/playlist',
+      component: Playlist,
+      children: [
+        {
+          path: ':id',
+          component: ListDetail
+        }
+      ]
     }
   ]
 })

@@ -1,4 +1,5 @@
 const state = {
-  banners: []
+  banners: [],
+  disc: {}
 }
 export default state

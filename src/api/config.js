@@ -28,3 +28,17 @@ Http.interceptors.response.use((res) => {
 })
 
 export default Http
+
+export function getAPIData(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    Http.get(url, {
+      params: {
+        ...data
+      }
+    }).then((res) => {
+      resolve(res.data)
+    }, (err) => {
+      reject(err)
+    })
+  })
+}
